@@ -1,0 +1,1 @@
+// Copie o conteúdo do game.js original aqui

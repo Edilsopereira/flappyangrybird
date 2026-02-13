@@ -168,6 +168,10 @@ button:hover {
 .icons ion-icon:hover {
     color: var(--cor3);
 }
+/* Remove sublinhado dos links dos ícones do rodapé */
+.rodape .icons a {
+    text-decoration: none;
+}
 }
 /* Adicionando responsividade para tablets e desktops grandes */
 @media (min-width: 768px) and (max-width: 1024px) {

@@ -40,7 +40,9 @@ document.body.onkeyup = function (e) {
 canvas.addEventListener('touchstart', function (e) {
     flap();
     e.preventDefault();
-}, {passive: false});
+}, {
+    passive: false
+});
 
 canvas.addEventListener('mousedown', function (e) {
     flap();
@@ -142,11 +144,16 @@ function endGame() {
     showEndMenu();
 }
 
-function loop() {
+// Controle de delta time para velocidade igual em todos dispositivos
+let lastTime = performance.now();
+const BASE_FRAME_TIME = 16.67; // 60fps
+
+function loop(currentTime) {
+    const delta = (currentTime - lastTime) / BASE_FRAME_TIME;
+    lastTime = currentTime;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     ctx.drawImage(flappyImg, birdX, birdY);
-
     ctx.fillStyle = '#333';
     ctx.fillRect(pipeX, -50, PIPE_WIDTH, pipeY);
     ctx.fillRect(pipeX, pipeY + PIPE_GAP, PIPE_WIDTH, canvas.height - pipeY);
@@ -156,17 +163,17 @@ function loop() {
         return;
     }
 
-    pipeX -= 1.5;
+    pipeX -= 1.5 * delta;
     if (pipeX < -50) {
         pipeX = 400;
         pipeY = Math.random() * (canvas.height - PIPE_GAP) + PIPE_WIDTH;
     }
 
-    birdVelocity += birdAcceleration;
-    birdY += birdVelocity;
+    birdVelocity += birdAcceleration * delta;
+    birdY += birdVelocity * delta;
 
-    increaseScore()
+    increaseScore();
     requestAnimationFrame(loop);
 }
 
-loop();
+requestAnimationFrame(loop);

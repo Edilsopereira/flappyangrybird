@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#73c8a9" />
+    <title>Flappy Angry Bird</title>
+    <link rel="shortcut icon" href="assets/icone.png" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="end-menu">
+      <h1>Fim de jogo!</h1>
+      <p>Resultado: <span id="end-score"></span></p>
+      <p>Melhor resultado: <span id="best-score"></span></p>
+      <button id="restart-button">Recomeçar</button>
+    </div>
+    <div id="game-container">
+      <canvas
+        id="game-canvas"
+        width="400"
+        height="600"
+        style="touch-action: manipulation"
+      ></canvas>
+      <div id="score-display">0</div>
+    </div>
+    <footer class="rodape">
+      <div class="icons">
+        <a href="https://www.linkedin.com/in/edilso-peres-pereira-248098208/">
+          <ion-icon name="logo-linkedin"></ion-icon>
+        </a>
+        <a href="https://github.com/EdilsoPereira">
+          <ion-icon name="logo-github"></ion-icon>
+        </a>
+      </div>
+      <h3>Desenvolvido por Edilso Peres Pereira</h3>
+    </footer>
+    <script src="game.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
