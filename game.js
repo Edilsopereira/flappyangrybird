@@ -25,21 +25,25 @@ let highScore = 0;
 
 let scored = false;
 
+
+// Suporte para teclado e toque (Android/iOS)
+function flap() {
+    birdVelocity = FLAP_SPEED;
+}
+
 document.body.onkeyup = function (e) {
-    if (e.code == 'Space') {
-        birdVelocity = FLAP_SPEED;
+    if (e.code === 'Space' || e.key === ' ') {
+        flap();
     }
 }
 
-let lastTap = 0;
-const doubleTapDelay = 2000;
+canvas.addEventListener('touchstart', function (e) {
+    flap();
+    e.preventDefault();
+}, {passive: false});
 
-document.addEventListener('touchstart', function (e) {
-    birdVelocity = FLAP_SPEED;
-    if (timeSinceLastTap < doubleTapDelay) {
-        e.preventDefault();
-        return;
-    }
+canvas.addEventListener('mousedown', function (e) {
+    flap();
 });
 
 document.getElementById('restart-button').addEventListener('click', function () {

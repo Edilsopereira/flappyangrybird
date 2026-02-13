@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -7,6 +7,15 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
+    <!-- Meta para iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#73c8a9" />
+    <!-- Sugestão para PWA: adicionar manifest.json -->
     <title>Flappy Angry Bird</title>
     <link rel="shortcut icon" href="./assets/icone.png" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
@@ -20,7 +29,12 @@
       <button id="restart-button">Recomeçar</button>
     </div>
     <div id="game-container">
-      <canvas id="game-canvas" width="400" height="600"></canvas>
+      <canvas
+        id="game-canvas"
+        width="400"
+        height="600"
+        style="touch-action: manipulation"
+      ></canvas>
       <div id="score-display">0</div>
     </div>
 
@@ -37,6 +51,14 @@
     </footer>
 
     <script src="game.js"></script>
+    <!-- Sugestão: registrar service worker para PWA -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("service-worker.js")
+          .catch(function (e) {});
+      }
+    </script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
