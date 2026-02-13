@@ -1,5 +1,7 @@
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext("2d");
+
+
 const gameContainer = document.getElementById('game-container');
 
 const flappyImg = new Image();
@@ -48,11 +50,16 @@ canvas.addEventListener('mousedown', function (e) {
     flap();
 });
 
+let gameRunning = false;
+
 document.getElementById('restart-button').addEventListener('click', function () {
     hideEndMenu();
     resetGame();
-    loop();
-})
+    if (!gameRunning) {
+        gameRunning = true;
+        requestAnimationFrame(loop);
+    }
+});
 
 
 function increaseScore() {
@@ -149,6 +156,7 @@ let lastTime = performance.now();
 const BASE_FRAME_TIME = 16.67; // 60fps
 
 function loop(currentTime) {
+    gameRunning = true;
     const delta = (currentTime - lastTime) / BASE_FRAME_TIME;
     lastTime = currentTime;
 
@@ -160,6 +168,7 @@ function loop(currentTime) {
 
     if (collisionCheck()) {
         endGame();
+        gameRunning = false;
         return;
     }
 
